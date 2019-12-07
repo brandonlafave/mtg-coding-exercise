@@ -1,1 +1,8 @@
+.home-wrapper {
+  position: relative;
+  min-height: 100vh;
+}
 
+.body-content {
+  padding-bottom: 2.5rem;
+}
