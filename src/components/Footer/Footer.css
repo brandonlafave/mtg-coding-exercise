@@ -1,6 +1,5 @@
 .footer-wrapper {
-  position: absolute;
-  bottom: 0;
+  height: 2.5rem;
   width: 100%;
   box-shadow: 0 2px 20px rgba(0,0,0,.5);
 }
@@ -8,4 +7,6 @@
 .footer-wrapper p {
     text-align: center;
     font-size: 10px;
+    line-height: 2.5rem;
+    white-space: nowrap;
 }
