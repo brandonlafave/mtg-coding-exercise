@@ -1,0 +1,11 @@
+.footer-wrapper {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+}
+
+.footer-wrapper p {
+    color: white;
+    text-align: center;
+}
