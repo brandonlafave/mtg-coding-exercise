@@ -4,5 +4,15 @@
 }
 
 .body-content {
+  margin-top: 2.5em;
   padding-bottom: 2.5rem;
+  display: block;
+}
+
+@media (min-width : 650px) {
+  .body-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
 }
