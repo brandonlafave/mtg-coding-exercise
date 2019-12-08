@@ -4,7 +4,7 @@
  * @param {string} defaultValue the value that replaces the default empty string
  * @returns {string} containing the property value if it exists or an empty string if it doesn't
  */
-function safeDefaults(property, defaultValue = '') {
+const safeDefaults = (property, defaultValue = '') => {
     /* TODO: Extend this function to handle nested properties */
     return property ? property : defaultValue;
 }

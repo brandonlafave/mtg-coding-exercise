@@ -3,6 +3,7 @@ import Card from './Card';
 import {
   SET_LABEL,
   NAME_LABEL,
+  SAMPLE_CARD,
   ARTIST_LABEL,
   DEFAULT_IMAGE_URL,
   NO_INFO_AVAILABLE,
@@ -11,15 +12,7 @@ import {
 import { mount } from 'enzyme';
 
 describe('<Card />', () => {
-  let props = {
-    imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=409626&type=card',
-    name: 'Abattoir Ghoul',
-    artist: 'Volkan Baǵa',
-    setName: 'Duel Decks: Blessed vs. Cursed',
-    originalType: 'Creature — Zombie'
-  };
-
-  let wrapper = mount(<Card { ...props }/>);
+  let wrapper = mount(<Card { ...SAMPLE_CARD }/>);
 
   it('renders the <Card /> component without crashing', () => {
     expect(wrapper.find('.card-wrapper').length).toEqual(1);
@@ -27,12 +20,12 @@ describe('<Card />', () => {
 
   describe('<Card /> Image Tests', () => {
     it('renders the card image', () => {
-      expect(wrapper.find('.card-image').prop('src')).toEqual(props.imageUrl);
+      expect(wrapper.find('.card-image').prop('src')).toEqual(SAMPLE_CARD.imageUrl);
     });
 
     it('defaults to a placeholder image if none is available for the card', () => {
-      props.imageUrl = '';
-      wrapper = mount(<Card { ...props }/>);
+      SAMPLE_CARD.imageUrl = '';
+      wrapper = mount(<Card { ...SAMPLE_CARD }/>);
 
       expect(wrapper.find('.card-image').prop('src')).toEqual(DEFAULT_IMAGE_URL);
     });
@@ -44,12 +37,12 @@ describe('<Card />', () => {
     });
 
     it('renders the card name value', () => {
-      expect(wrapper.find('.card-name td').text()).toEqual(props.name);
+      expect(wrapper.find('.card-name td').text()).toEqual(SAMPLE_CARD.name);
     });
 
     it('defaults to a placeholder message if the name information is not available', () => {
-      props.name = '';
-      wrapper = mount(<Card { ...props }/>);
+      SAMPLE_CARD.name = '';
+      wrapper = mount(<Card { ...SAMPLE_CARD }/>);
 
       expect(wrapper.find('.card-name td').text()).toEqual(NO_INFO_AVAILABLE);
     });
@@ -61,12 +54,12 @@ describe('<Card />', () => {
     });
 
     it('renders the card artist value', () => {
-      expect(wrapper.find('.card-artist td').text()).toEqual(props.artist);
+      expect(wrapper.find('.card-artist td').text()).toEqual(SAMPLE_CARD.artist);
     });
 
     it('defaults to a placeholder message if the artist information is not available', () => {
-      props.artist = '';
-      wrapper = mount(<Card { ...props }/>);
+      SAMPLE_CARD.artist = '';
+      wrapper = mount(<Card { ...SAMPLE_CARD }/>);
 
       expect(wrapper.find('.card-artist td').text()).toEqual(NO_INFO_AVAILABLE);
     });
@@ -78,12 +71,12 @@ describe('<Card />', () => {
     });
 
     it('renders the card set value', () => {
-      expect(wrapper.find('.card-set td').text()).toEqual(props.setName);
+      expect(wrapper.find('.card-set td').text()).toEqual(SAMPLE_CARD.setName);
     });
 
     it('defaults to a placeholder message if the set name information is not available', () => {
-      props.setName = '';
-      wrapper = mount(<Card { ...props }/>);
+      SAMPLE_CARD.setName = '';
+      wrapper = mount(<Card { ...SAMPLE_CARD }/>);
 
       expect(wrapper.find('.card-set td').text()).toEqual(NO_INFO_AVAILABLE);
     });
@@ -95,12 +88,12 @@ describe('<Card />', () => {
     });
 
     it('renders the card original type value', () => {
-      expect(wrapper.find('.card-type td').text()).toEqual(props.originalType);
+      expect(wrapper.find('.card-type td').text()).toEqual(SAMPLE_CARD.originalType);
     });
 
     it('defaults to a placeholder message if the type information is not available', () => {
-      props.originalType = '';
-      wrapper = mount(<Card { ...props }/>);
+      SAMPLE_CARD.originalType = '';
+      wrapper = mount(<Card { ...SAMPLE_CARD }/>);
 
       expect(wrapper.find('.card-type td').text()).toEqual(NO_INFO_AVAILABLE);
     });
