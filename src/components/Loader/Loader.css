@@ -1,0 +1,16 @@
+.loader-wrapper {
+  text-align: center;
+}
+
+.loader-spinner {
+  animation: loader-spinner-spin infinite 1.5s linear;
+  width: 75px;
+  height: 75px;
+  color: gray;
+  display: inline-block;
+}
+
+@keyframes loader-spinner-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

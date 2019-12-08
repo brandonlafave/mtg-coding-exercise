@@ -1,12 +1,13 @@
 .home-wrapper {
   position: relative;
-  min-height: 100vh;
+  height: 100%;
 }
 
 .body-content {
   margin-top: 2.5em;
   padding-bottom: 2.5rem;
   display: block;
+  min-height: 100vh;
 }
 
 @media (min-width : 650px) {
