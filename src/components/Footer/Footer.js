@@ -3,11 +3,11 @@ import './Footer.css';
 
 function Footer(props) {
     return (
-      <div className="footer-wrapper">
+      <footer className="footer-wrapper" role="contentinfo">
         <p className="footer-copy">
           Created by Brandon LaFave
         </p>
-      </div>
+      </footer>
     );
 }
 

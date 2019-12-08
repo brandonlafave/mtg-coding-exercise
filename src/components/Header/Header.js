@@ -4,11 +4,11 @@ import './Header.css';
 
 function Header(props) {
   return (
-    <div className="header-wrapper">
+    <header className="header-wrapper" role="banner">
       <div className="header-logo-wrapper">
         <img src={logo} className="header-logo" alt="logo" />
       </div>
-    </div>
+    </header>
   );
 }
 
