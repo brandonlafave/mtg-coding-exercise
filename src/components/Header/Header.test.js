@@ -1,8 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Header from './header';
+import Header from './Header';
+import { mount } from 'enzyme';
 
-it('renders the header component without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Header />, div);
+describe('<Header />', () => {
+  const wrapper = mount(<Header />);
+
+  it('renders the Header component without crashing', () => {
+    expect(wrapper.find('.header-wrapper').length).toEqual(1);
+  });
 });

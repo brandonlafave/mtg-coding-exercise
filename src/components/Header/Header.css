@@ -5,11 +5,5 @@
 }
 
 .header-logo {
-  /* animation: header-logo-spin infinite 2s linear; */
   height: 80px;
 }
-
-/* @keyframes header-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-} */

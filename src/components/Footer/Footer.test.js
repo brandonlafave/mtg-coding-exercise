@@ -1,8 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Footer from './Footer';
+import { mount } from 'enzyme';
 
-it('renders the Footer component without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Footer />, div);
+describe('<Footer />', () => {
+  const wrapper = mount(<Footer />);
+
+  it('renders the Footer component without crashing', () => {
+    expect(wrapper.find('.footer-wrapper').length).toEqual(1);
+  });
 });

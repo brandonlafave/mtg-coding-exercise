@@ -6,7 +6,7 @@ function Header(props) {
   return (
     <header className="header-wrapper" role="banner">
       <div className="header-logo-wrapper">
-        <img src={logo} className="header-logo" alt="logo" />
+        <img src={logo} className="header-logo" alt="Magic the Gathering logo" />
       </div>
     </header>
   );
