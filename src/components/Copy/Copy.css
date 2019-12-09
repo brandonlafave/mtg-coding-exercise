@@ -1,0 +1,14 @@
+.copy-wrapper {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  text-align: center;
+}
+
+.copy-wrapper p {
+    font-size: 16px;
+}
+
+.copy-wrapper h1 {
+  font-size: 32px;
+  font-weight: bold;
+}
