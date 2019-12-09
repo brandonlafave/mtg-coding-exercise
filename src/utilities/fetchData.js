@@ -1,17 +1,26 @@
 import safeDefaults from './safeDefaults.js';
 
 /**
+ * loopThroughDefaults - Checks if properties within an object exist, and if not, defaults to an empty string
+ * @param {object} object An object containing properties that need to be looped through and checked for defaults
+ * @returns {object} An object containing safe default values
+ */
+const loopThroughDefaults = (object) => {
+    for (var key of Object.keys(object)) {
+        object[key] = safeDefaults(object[key]);
+    }
+
+    return object;
+}
+
+/**
  * fetchData - Fetches card data from the API
- * @param {number} pageSize the number of results that should be returned
- * @param {string} orderBy the property the data should be sorted by
- * @param {string} type the type of card
+ * @param {object} paramObject An object containing the request parameters
  * @returns {array} containing card data
  */
-function fetchData(pageSize, orderBy, type) {
+const fetchData = (paramObject) => {
 
-    pageSize = safeDefaults(pageSize);
-    orderBy = safeDefaults(orderBy);
-    type = safeDefaults(type);
+    let safeParams = loopThroughDefaults(paramObject);
 
     const requestHeaders = {
         headers:{
@@ -20,7 +29,7 @@ function fetchData(pageSize, orderBy, type) {
         }
     };
     const baseUrl = 'https://api.magicthegathering.io/v1/cards'
-    const requestParams = `?pageSize=${pageSize}&orderBy=${orderBy}&type=${type}`;
+    const requestParams = `?pageSize=${safeParams.pageSize}&orderBy=${safeParams.orderBy}&type=${safeParams.type}&page=${safeParams.page}`;
     const requestUrl = `${baseUrl}${requestParams}`;
 
     return fetch(requestUrl, requestHeaders)
