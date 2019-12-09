@@ -34,6 +34,10 @@ function Card(props) {
 
   const safeImageUrl = safeDefaults(imageUrl, DEFAULT_IMAGE_URL);
 
+  /**
+   * renderCardInfo - Generates the HTML for the card information section
+   * @return {JSX} Returns card information sections for the card tiles
+   */
   function renderCardInfo() {
     /*
       I've used a table here since it's tabular data and

@@ -12,4 +12,20 @@ export const SAMPLE_CARD = {
     setName: 'Duel Decks: Blessed vs. Cursed',
     originalType: 'Creature — Zombie',
     id: '12345'
-}
+};
+export const CARD_ONE_LIST = [{
+    imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=409626&type=card',
+    name: 'Abattoir Ghoul',
+    artist: 'Volkan Baǵa',
+    setName: 'Duel Decks: Blessed vs. Cursed',
+    originalType: 'Creature — Zombie',
+    id: '12345'
+}];
+export const CARD_TWO_LIST = [{
+    imageUrl: 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=409626&type=card',
+    name: 'Abattoir Ghoul',
+    artist: 'Volkan Baǵa',
+    setName: 'Duel Decks: Blessed vs. Cursed',
+    originalType: 'Creature — Zombie',
+    id: '54321'
+}];
