@@ -6,12 +6,15 @@
 .body-content {
   margin-top: 2.5em;
   padding-bottom: 2.5rem;
-  display: block;
   min-height: 100vh;
 }
 
+.card-tile-container {
+  display: block;
+}
+
 @media (min-width : 650px) {
-  .body-content {
+  .card-tile-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
