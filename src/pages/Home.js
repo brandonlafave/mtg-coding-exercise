@@ -116,8 +116,9 @@ class Home extends Component {
         this.handleCardResponse(response);
       })
       .catch(error => {
-        this.state({
-          error: safeDefaults(error.description, "We're unable to process your request")
+        this.setState({
+          error: safeDefaults(error.description, "We're unable to process your request"),
+          isLoading: false
         });
       });
     });
