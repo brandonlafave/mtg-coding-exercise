@@ -45,7 +45,7 @@ It's not affiliated with Wizards of the Coast.
 This project uses an API that's not affiliated with Wizards of the Coast. The API information and documentation is below:
 
 * Location: https://api.magicthegathering.io/v1/cards
-* **Documentation:
+* Documentation:
     * https://docs.magicthegathering.io/
     * https://docs.magicthegathering.io/#api_v1cards_list
 
