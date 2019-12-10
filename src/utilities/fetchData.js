@@ -29,7 +29,7 @@ const fetchData = (paramObject) => {
         }
     };
     const baseUrl = 'https://api.magicthegathering.io/v1/cards'
-    const requestParams = `?pageSize=${safeParams.pageSize}&orderBy=${safeParams.orderBy}&type=${safeParams.type}&page=${safeParams.page}`;
+    const requestParams = `?pageSize=${safeParams.pageSize}&orderBy=${safeParams.orderBy}&type=${safeParams.type}&page=${safeParams.page}${safeParams.searchQuery}`;
     const requestUrl = `${baseUrl}${requestParams}`;
 
     return fetch(requestUrl, requestHeaders)
