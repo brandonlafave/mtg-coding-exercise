@@ -62,7 +62,6 @@ class SearchBar extends Component {
         <InputField
           id='search'
           label='Search by name'
-          handleChange={() => {}}
           placeholderText='Search by name'
           changeCallback={(e) => this.handleInputChange(e)}
         />
