@@ -22,8 +22,7 @@ It's not affiliated with Wizards of the Coast.
 ## Demo
 * https://tranquil-taiga-57459.herokuapp.com/
 
-## Prerequisites
-Install the following:
+## Dependencies
 * `Node 12.13.1`
 * `npm 6.12.1`
 
