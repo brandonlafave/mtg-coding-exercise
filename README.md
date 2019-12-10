@@ -39,8 +39,10 @@ This project uses an API that's not affiliated with Wizards of the Coast. The AP
 ## TODO
 * Integrate Travis CI with repo
 * Update CSS build to include pre or post processor to help with variables, vendor prefixes, etc.
+* Create Global CSS file
 * Include prettier.js in the project
 * Add a language dropdown in the header to allow users to switch languages
 * Create a language file of key-value pairs that can be used for translations
 * Add nginx proxy so we can access the header information from the API on a deployed server
+* Restrict image dimensions on the card images so they're all uniform. (The API returns larger images for some cards, rather than the standard size used by most of the cards.)
 
