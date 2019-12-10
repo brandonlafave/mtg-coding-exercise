@@ -1,5 +1,5 @@
 # Magic: The Gathering Coding Exercise
-This project was created as a coding exercise using an open source Magic the Gathering (MTG) API and Create React App.
+This project was created as a coding exercise using a Magic the Gathering (MTG) API and Create React App.
 
 It's not affiliated with Wizards of the Coast.
 
