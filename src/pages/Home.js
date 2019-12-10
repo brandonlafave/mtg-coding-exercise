@@ -161,6 +161,14 @@ class Home extends Component {
   updateSearchParams = (searchBarParams) => {
     let requestParams = this.state.requestParams;
 
+    const hasSameRequestParams = this.hasSameRequestParams(
+      searchBarParams, this.state.prevRequestParams
+    );
+
+    if (hasSameRequestParams && this.state.hasReturnedAllResults) {
+      return
+    }
+
     requestParams.searchQuery = safeDefaults(searchBarParams.searchQuery);
     requestParams.orderBy = safeDefaults(searchBarParams.orderBy, 'name');
     requestParams.page = 1;

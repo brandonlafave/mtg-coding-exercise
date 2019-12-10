@@ -126,6 +126,15 @@ describe('<Home />', () => {
     it('should reset the page value in the state', () => {
       expect(wrapper.state('requestParams').page).toEqual(1);
     });
+
+    it('should return early if there are no more results and the query params have not changed', () => {
+      wrapper.setState({
+        hasReturnedAllResults: true,
+        prevRequestParams: searchParams
+      })
+
+      expect(wrapper.instance().updateSearchParams(searchParams)).toEqual(undefined);
+    });
   });
 
   describe('API Error Tests', () => {
