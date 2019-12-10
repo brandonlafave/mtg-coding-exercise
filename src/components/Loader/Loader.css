@@ -8,7 +8,7 @@
   -moz-animation: loader-spinner-spin infinite 1.5s linear;
   width: 75px;
   height: 75px;
-  color: gray;
+  color: #808080;
   display: inline-block;
 }
 

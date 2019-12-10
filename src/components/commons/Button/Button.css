@@ -19,5 +19,5 @@
 
 .button:disabled {
   background-color: rgba(189, 184, 184, 0.671);
-  color: black;
+  color: #000000;
 }
