@@ -86,4 +86,22 @@ describe('<Home />', () => {
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
+
+  describe('infiniteScrollRequest Tests', () => {
+    it('should display the no results Copy component if no additional results are found', () => {
+      wrapper.setState({
+        hasReturnedAllResults: true
+      });
+
+      expect(wrapper.find('.no-results').length).toEqual(1);
+    });
+
+    it('should hide the no results Copy component if additional results are found', () => {
+      wrapper.setState({
+        hasReturnedAllResults: false
+      });
+
+      expect(wrapper.find('.no-results').length).toEqual(0);
+    });
+  });
 });

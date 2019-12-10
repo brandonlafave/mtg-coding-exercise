@@ -4,8 +4,9 @@ import Footer from '../components/Footer';
 import Card from '../components/Card';
 import Loader from '../components/Loader';
 import Copy from '../components/Copy';
+import SearchBar from '../components/SearchBar';
 import fetchData from '../utilities/fetchData';
-import _debounce from "lodash.debounce";
+import safeDefaults from '../utilities/safeDefaults';
 import './Home.css';
 
 class Home extends Component {
@@ -21,8 +22,14 @@ class Home extends Component {
         page: 1,
         pageSize: 20,
         type: 'creature',
-        orderBy: 'name'
-      }
+        orderBy: 'name',
+        searchQuery: ''
+      },
+      prevRequestParams: {
+        searchQuery: '',
+        orderBy: '',
+      },
+      error: ''
     }
 
     window.onscroll = () => {
@@ -35,7 +42,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.getCards();
+    this.getCards(this.state.requestParams);
   }
 
   /**
@@ -63,18 +70,52 @@ class Home extends Component {
   infiniteScrollRequest = (pageYOffset, innerHeight, homeWrapperOffset) => {
     const hasReachedEndOfPage = pageYOffset + innerHeight === homeWrapperOffset && !this.state.isLoading;
 
-    return hasReachedEndOfPage ? this.getCards() : null;
+    return hasReachedEndOfPage ? this.getCards(this.state.requestParams) : null;
   };
 
-  getCards = () => {
+  hasSameRequestParams = (currentRequestParams, prevRequestParams) => {
+    return (currentRequestParams.searchQuery === prevRequestParams.searchQuery
+      && currentRequestParams.orderBy === prevRequestParams.orderBy);
+  }
+
+  /**
+   * getCards - Fetches cards from API
+   * @param {object} requestParams An object containing the request params:
+   *  - page
+   *  - pageSize
+   *  - type
+   *  - orderBy
+   *  - searchQuery
+   */
+  getCards = (requestParams) => {
+    let hasReturnedAllResults = this.state.hasReturnedAllResults;
+
+    const hasSameRequestParams = this.hasSameRequestParams(
+      requestParams, this.state.prevRequestParams
+    );
+
+    if (hasSameRequestParams && hasReturnedAllResults) {
+      return;
+    }
+
+    if (!hasSameRequestParams && hasReturnedAllResults) {
+      hasReturnedAllResults = false;
+    }
+
     this.setState({
+      hasReturnedAllResults,
       isLoading: true
     }, () => {
-      fetchData(this.state.requestParams)
+      fetchData(requestParams)
       .then(response => {
         this.handleCardResponse(response);
       })
-    })
+      .catch(error => {
+        this.state({
+          error: safeDefaults(error.description, "We're unable to process your request")
+        });
+      });
+    });
   }
 
   /**
@@ -83,37 +124,71 @@ class Home extends Component {
    */
   handleCardResponse = (response) => {
     let requestParams = this.state.requestParams,
+        prevRequestParams = this.state.prevRequestParams,
         cardList = this.state.cardList,
-        page = requestParams.page;
+        page = requestParams.page,
+        isResponseAnArray = Array.isArray(response),
+        hasReturnedAllResults = this.state.hasReturnedAllResults;
 
-    if (Array.isArray(response) && response.length > 0) {
+    if (isResponseAnArray && response.length > 0) {
       cardList = [ ...cardList, ...response ];
       page += 1;
 
       requestParams.page = page;
+      prevRequestParams.searchQuery = requestParams.searchQuery;
+      prevRequestParams.orderBy = requestParams.orderBy;
+    }
+
+    if (isResponseAnArray && response.length === 0) {
+      hasReturnedAllResults = true;
+
     }
 
     this.setState({
-      requestParams,
       cardList,
-      isLoading: false
+      requestParams,
+      hasReturnedAllResults,
+      isLoading: false,
     })
   };
 
+  updateSearchParams = (searchBarParams) => {
+    let requestParams = this.state.requestParams;
+
+    requestParams.searchQuery = safeDefaults(searchBarParams.searchQuery);
+    requestParams.orderBy = safeDefaults(searchBarParams.orderBy, 'name');
+    requestParams.page = 1;
+
+    this.setState({
+      requestParams,
+      cardList: []
+    }, () => {
+      this.getCards(this.state.requestParams);
+    });
+  }
+
   render() {
-    let { cardList, isLoading } = this.state;
-    const title = 'Magic the Gathering Coding Exercise';
-    const copy = 'Keep scrolling to load more cards!';
+    let { cardList, isLoading, hasReturnedAllResults } = this.state;
+    const headingTitle = 'Magic the Gathering Coding Exercise';
+    const headingCopy = 'Keep scrolling to load more cards!';
+    const noResultsFoundCopy = "Additional results aren't available for that request. Please try another search using different search parameters";
 
     return (
       <div className="home-wrapper" ref={el => this.home = el}>
         <Header />
         <main className='body-content' role='main'>
-          <Copy title={title} copy={copy} />
+          <Copy title={headingTitle} copy={headingCopy} />
+          <SearchBar
+            disableSearchButton={isLoading}
+            fetchCardsCallback={this.updateSearchParams}
+            orderBy={safeDefaults(this.state.requestParams.orderBy)}/>
           <div className='card-tile-container'>
             { this.generateCardTiles(cardList) }
           </div>
           <Loader isLoading={isLoading} />
+          { hasReturnedAllResults &&
+            <Copy copyClassName='no-results' copy={noResultsFoundCopy} />
+          }
         </main>
         <Footer />
       </div>
