@@ -1,0 +1,23 @@
+.button {
+  margin-top: .5em;
+  margin-bottom: .5em;
+  text-align: center;
+  min-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 40px;
+  background: none;
+  background-color: #058d22;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.button:hover {
+  background-color: #015213;
+}
+
+.button:disabled {
+  background-color: rgba(189, 184, 184, 0.671);
+  color: black;
+}
