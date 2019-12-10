@@ -4,6 +4,7 @@ This project was created as a coding exercise using an open source Magic the Gat
 It's not affiliated with Wizards of the Coast.
 
 ## Table of Contents
+- [Demo](#demo)
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
 - [Starting the Project](#starting-the-project)
@@ -18,10 +19,13 @@ It's not affiliated with Wizards of the Coast.
   * [Testing](#testing)
   * [Build Process](#build-process)
 
+## Demo
+* https://tranquil-taiga-57459.herokuapp.com/
+
 ## Prerequisites
 Install the following:
-* `Node 10.13`
-* `npm 5.5^`
+* `Node 12.13.1`
+* `npm 6.12.1`
 
 ## Getting Started
 1. Clone the repo
