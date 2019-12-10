@@ -4,6 +4,8 @@
 
 .loader-spinner {
   animation: loader-spinner-spin infinite 1.5s linear;
+  -webkit-animation: loader-spinner-spin infinite 1.5s linear;
+  -moz-animation: loader-spinner-spin infinite 1.5s linear;
   width: 75px;
   height: 75px;
   color: gray;
