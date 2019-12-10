@@ -68,7 +68,11 @@ class Home extends Component {
    * @param {string} homeWrapperOffset The offset values for the home wrapper
    */
   infiniteScrollRequest = (pageYOffset, innerHeight, homeWrapperOffset) => {
-    const hasReachedEndOfPage = pageYOffset + innerHeight === homeWrapperOffset && !this.state.isLoading;
+    /*
+      TODO: Investigate which offset distance provides the most perceived performance for users.
+      Also, look into using a debounce with this function.
+    */
+    const hasReachedEndOfPage = pageYOffset + innerHeight >= (homeWrapperOffset - 250) && !this.state.isLoading;
 
     return hasReachedEndOfPage ? this.getCards(this.state.requestParams) : null;
   };
@@ -104,6 +108,7 @@ class Home extends Component {
 
     this.setState({
       hasReturnedAllResults,
+      error: '',
       isLoading: true
     }, () => {
       fetchData(requestParams)
@@ -168,10 +173,11 @@ class Home extends Component {
   }
 
   render() {
-    let { cardList, isLoading, hasReturnedAllResults } = this.state;
+    let { cardList, isLoading, hasReturnedAllResults, error } = this.state;
+    // TODO: Move the text values below to a constants file
     const headingTitle = 'Magic the Gathering Coding Exercise';
     const headingCopy = 'Keep scrolling to load more cards!';
-    const noResultsFoundCopy = "Additional results aren't available for that request. Please try another search using different search parameters";
+    const noResultsFoundCopy = "Additional results aren't available for that request. Please try another search using different search parameters.";
 
     return (
       <div className="home-wrapper" ref={el => this.home = el}>
@@ -188,6 +194,9 @@ class Home extends Component {
           <Loader isLoading={isLoading} />
           { hasReturnedAllResults &&
             <Copy copyClassName='no-results' copy={noResultsFoundCopy} />
+          }
+          { error &&
+             <Copy copyClassName='api-error' copy={error} />
           }
         </main>
         <Footer />

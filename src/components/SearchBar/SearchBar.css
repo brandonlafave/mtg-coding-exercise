@@ -1,6 +1,11 @@
 .search-bar-wrapper {
   margin: 2em;
   max-width: 500px;
-  margin-right: auto;
-  margin-left: auto;
+}
+
+@media (min-width : 650px) {
+  .search-bar-wrapper {
+    margin-right: auto;
+    margin-left: auto;
+  }
 }

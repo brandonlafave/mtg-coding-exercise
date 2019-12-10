@@ -38,7 +38,7 @@ const fetchData = (paramObject) => {
         return response.cards;
     })
     .catch(error => {
-        return error;
+        throw error;
     });
 }
 

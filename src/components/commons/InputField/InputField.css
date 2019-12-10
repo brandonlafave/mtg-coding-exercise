@@ -13,10 +13,24 @@
 }
 
 .input-field-wrapper input {
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+  padding-left: .4em;
   height: 30px;
   width: 100%;
+  border-radius: 5px;
+  border: 3px solid #d3d3d3;
 }
 
 .input-field-wrapper input::placeholder {
   padding-left: .5em;
+  color: #000000;
+}
+
+@media (min-width : 650px) {
+  .search-bar-wrapper {
+    margin-right: auto;
+    margin-left: auto;
+  }
 }

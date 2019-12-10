@@ -2,7 +2,7 @@
   margin-top: .5em;
   margin-bottom: .5em;
   text-align: center;
-  min-width: 200px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   height: 40px;
@@ -20,4 +20,10 @@
 .button:disabled {
   background-color: rgba(189, 184, 184, 0.671);
   color: #000000;
+}
+
+@media (min-width : 650px) {
+  .button {
+    max-width: 200px;
+  }
 }

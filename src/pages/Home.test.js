@@ -84,16 +84,6 @@ describe('<Home />', () => {
 
       expect(infiniteScrollRequest).toEqual(null);
     });
-
-    it.skip('should call getCards one time once when the user has reached the bottom of the page', () => {
-      const spy = jest.spyOn(wrapper.instance(), 'getCards');
-
-      for (let i=0; i < 5; i++) {
-        wrapper.instance().infiniteScrollRequest(1500, 500, 2000);
-      }
-
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
   });
 
   describe('No Results Available Tests', () => {
@@ -113,6 +103,7 @@ describe('<Home />', () => {
       expect(wrapper.find('.no-results').length).toEqual(0);
     });
   });
+
   describe('updateSearchParams Tests', () => {
     let searchParams;
 
@@ -134,6 +125,24 @@ describe('<Home />', () => {
 
     it('should reset the page value in the state', () => {
       expect(wrapper.state('requestParams').page).toEqual(1);
+    });
+  });
+
+  describe('API Error Tests', () => {
+    it('should display the error returned from the API s are found', () => {
+      wrapper.setState({
+        error: "We're unable to process your request right now."
+      });
+
+      expect(wrapper.find('.api-error').length).toEqual(1);
+    });
+
+    it('should hide the no results Copy component if additional results are found', () => {
+      wrapper.setState({
+        error: ''
+      });
+
+      expect(wrapper.find('.api-error').length).toEqual(0);
     });
   });
 });

@@ -9,10 +9,16 @@
   font-size: 12px;
   font-weight: bold;
   margin-bottom: .25em;
-  color: darkslategray;
+  color: #2f4f4f;
 }
 
 .select-field {
-  height: 34px;
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+  padding-left: .90em;
+  height: 37px;
   width: 100%;
+  border: 3px solid #d3d3d3;
+  background: transparent;
 }
