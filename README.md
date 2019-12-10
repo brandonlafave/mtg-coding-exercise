@@ -42,7 +42,7 @@ It's not affiliated with Wizards of the Coast.
 * `npm run coverage`
 
 ## API Information
-This project uses an API that's not affiliated with Wizards of the Coast. The API information and documentation is below:
+The API information and documentation is below:
 
 * Location: https://api.magicthegathering.io/v1/cards
 * Documentation:
@@ -59,7 +59,7 @@ This project uses an API that's not affiliated with Wizards of the Coast. The AP
 * Restrict image dimensions on the card images so they're all uniform. (The API returns larger images for some cards, rather than the standard size used by most of the cards.)
 * Create Global CSS file for utility classes and other styles that are truly common
 * Add a CSS pre or post processor to help with variables, vendor prefixes, etc.
-* Finish styling the select field component to it more closely matches the input field above it
+* Finish styling the select field component so it more closely matches the input field
 
 ### Translation
 * Add a language dropdown in the header to allow users to switch languages
@@ -76,7 +76,5 @@ This project uses an API that's not affiliated with Wizards of the Coast. The AP
 * Include prettier.js in the project
 * Add nginx proxy so we can access the header information from the API on a deployed server
 * Eject the project from create-react-app so the build can be modified to exclude the src/index.js from the test results
-* Include prettier.js in the project
 * Integrate Travis CI with repo to help catch any regressions
-* Add nginx proxy so we can access the header information from the API on a deployed server
 
