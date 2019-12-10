@@ -4,6 +4,7 @@ import { mount } from 'enzyme';
 
 describe('<InputField />', () => {
   let props = {
+    id: 'search',
     label: 'Input label',
     placeholderText: 'Input label placeholder text'
   };
@@ -29,7 +30,7 @@ describe('<InputField />', () => {
     });
 
     wrapper.update();
-    wrapper.find('#search').simulate('change');
+    wrapper.find('.input-field-wrapper input').simulate('change');
 
     expect(mockCallBack).toHaveBeenCalled();
   });
