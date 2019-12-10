@@ -10,6 +10,10 @@ describe('<Home />', () => {
     wrapper = mount(<Home />);
   });
 
+  afterEach(() => {
+    wrapper.unmount();
+  });
+
   describe('generateCardTiles Tests', () => {
     it('should not display cards if the card list is an empty array', () => {
         expect(wrapper.find('.card-wrapper').length).toEqual(0);
@@ -67,6 +71,11 @@ describe('<Home />', () => {
       wrapper.instance().handleCardResponse({});
       expect(wrapper.state('requestParams')['page']).toEqual(1);
     });
+
+    it('should set hasReturnedAllResults to true when the cards array is empty', () => {
+      wrapper.instance().handleCardResponse([]);
+      expect(wrapper.state('hasReturnedAllResults')).toEqual(true);
+    });
   });
 
   describe('infiniteScrollRequest Tests', () => {
@@ -87,7 +96,7 @@ describe('<Home />', () => {
     });
   });
 
-  describe('infiniteScrollRequest Tests', () => {
+  describe('No Results Available Tests', () => {
     it('should display the no results Copy component if no additional results are found', () => {
       wrapper.setState({
         hasReturnedAllResults: true
@@ -102,6 +111,29 @@ describe('<Home />', () => {
       });
 
       expect(wrapper.find('.no-results').length).toEqual(0);
+    });
+  });
+  describe('updateSearchParams Tests', () => {
+    let searchParams;
+
+    beforeEach(() => {
+      searchParams = {
+        searchQuery: '&name=Goblin',
+        orderBy: 'artist'
+      };
+      wrapper.instance().updateSearchParams(searchParams);
+    });
+
+    it('should update the searchQuery value in the state', () => {
+      expect(wrapper.state('requestParams').searchQuery).toEqual(searchParams.searchQuery);
+    });
+
+    it('should update the orderBy value in the state', () => {
+      expect(wrapper.state('requestParams').orderBy).toEqual(searchParams.orderBy);
+    });
+
+    it('should reset the page value in the state', () => {
+      expect(wrapper.state('requestParams').page).toEqual(1);
     });
   });
 });
