@@ -12,6 +12,7 @@ function InputField(props) {
       <input type="text"
         id={ id }
         placeholder={ placeholderText }
+        onKeyPress={(e) => { handleChange(e, props.onKeyPressCallback) }}
         onChange={(e) => { handleChange(e, props.changeCallback) }}/>
     </div>
   );

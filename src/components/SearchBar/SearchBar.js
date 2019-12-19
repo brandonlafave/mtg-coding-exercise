@@ -37,22 +37,33 @@ class SearchBar extends Component {
     }
   }
 
+  handleKeyPressChange = (e) => {
+    if (e.key === 'Enter') {
+      this.handleSubmit();
+    }
+  }
+
   handleInputChange = (e) => {
     const target = e.target;
     let orderBy = this.state.orderBy;
     let searchQuery = this.state.searchQuery;
+    let isSortId = (target.id === 'sort')
 
     if (target.id === 'search') {
       searchQuery = `&name=${encodeURIComponent(safeDefaults(e.target.value))}`;
     }
 
-    if (target.id === 'sort') {
+    if (isSortId) {
       orderBy = target.value;
     }
 
     this.setState({
       searchQuery,
       orderBy
+    }, () => {
+      if (isSortId) {
+        this.handleSubmit();
+      }
     });
   }
 
@@ -63,6 +74,7 @@ class SearchBar extends Component {
           id='search'
           label='Search by name'
           placeholderText='Search by name'
+          onKeyPressCallback={(e) => this.handleKeyPressChange(e)}
           changeCallback={(e) => this.handleInputChange(e)}
         />
         <SelectField
